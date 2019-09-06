@@ -1,0 +1,22 @@
+body {
+    background-image: url("../images/fire_bg.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100vh;
+    background-attachment: fixed;
+}
+
+.space-top {
+    padding-top: 70px;
+}
+
+.fa-pencil-alt {
+    font-size: .8em;
+}
+
+#teamName {
+    font-size: 3rem;
+}
+
+#errorMemberMessages, #errorTeamMessages {
+    color: #ff0000;
+}
