@@ -521,13 +521,13 @@ $(function() {
 
     // Link to add a new team member
     $("#addMemberBtn").on("click", function() {
-        location.href = "add_member.html?teamId=" + teamId;
+        location.href = "add_member.php?teamId=" + teamId;
         sessionStorage.setItem("league", objs.League);
     });
 
     // Cancel back to teams
     $("#cancelBtn").on("click", function() {
-        location.href = "teams.html";
+        location.href = "teams.php";
     });
 
     // Cancel and Confirm for edit team modal

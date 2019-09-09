@@ -33,7 +33,7 @@ function addMember(theForm, teamId) {
         })
         .done(function() {
             //alert("Edit team successful!");
-            location.href = "details.html?teamId=" + teamId;
+            location.href = "details.php?teamId=" + teamId;
         })
         .fail(function() {
             //alert("There was a problem, please try again.");
@@ -125,12 +125,12 @@ $(function() {
 
     // Cancel back to details
     $("#cancelBtn").on("click", function() {
-        location.href = "details.html?teamId=" + teamId;
+        location.href = "details.php?teamId=" + teamId;
     });
 
     // Cancel back to details
     $("#teamLink").on("click", function() {
-        location.href = "details.html?teamId=" + teamId;
+        location.href = "details.php?teamId=" + teamId;
     });
 
     // Send back to details after adding a member
