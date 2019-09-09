@@ -110,16 +110,7 @@
       </div>
     </div>
 
-    <footer class="container white text-center">
-      <hr class="bg-white">
-      <p>
-        <i class="fab fa-twitter-square"></i>
-        <i class="fab fa-facebook-square"></i>
-        <i class="fab fa-youtube-square"></i>
-        <i class="fab fa-instagram"></i>
-      </p>
-      <p>&copy;Hartcode Academy 2019</p>
-    </footer>
+    <?php include("inc/footer.php"); ?>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

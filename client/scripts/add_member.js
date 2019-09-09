@@ -26,7 +26,7 @@ function addMember(theForm, teamId) {
 
     $.ajax({
         type: "POST",
-        url: `/api/teams/${teamId}/members`,
+        url: `http://localhost:8081/api/teams/${teamId}/members`,
         data: formData,
         processData: false,
         contentType: false
@@ -106,7 +106,7 @@ $(function() {
 
     // Call to get current division info
     let divisionData;
-    $.getJSON("/api/leagues", (data) => {
+    $.getJSON("http://localhost:8081/api/leagues", (data) => {
         
         for(let i = 0; i < data.length; i++) {
             

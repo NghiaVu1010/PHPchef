@@ -401,7 +401,7 @@ function editTeam(teamId) {
     
     $.ajax({
         type: "PUT",
-        url: `/api/teams`,
+        url: `http://localhost:8081/api/teams`,
         data: serial
         })
         .done(function() {
@@ -426,7 +426,7 @@ function editMember(teamId, memberId) {
 
     $.ajax({
         type: "PUT",
-        url: `/api/teams/${teamId}/members`,
+        url: `http://localhost:8081/api/teams/${teamId}/members`,
         data: serial
         })
         .done(function() {
@@ -472,12 +472,12 @@ $(function() {
 
     // Holds a string of the action to be done with modal
     let action;
-    $.getJSON("/api/teams/" + teamId, (data) => {
+    $.getJSON("http://localhost:8081/api/teams/" + teamId, (data) => {
         objs = data;
         showData(objs);
 
         let info;
-        $.getJSON("/api/leagues", (data) => {
+        $.getJSON("http://localhost:8081/api/leagues", (data) => {
             for(let i = 0; i < data.length; i++) {
                 if(objs.League == data[i].Code) {
                     info = {MinAge: data[i].MinAge, MaxAge: data[i].MaxAge, MaxSize: data[i].MaxSize};
