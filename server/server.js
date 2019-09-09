@@ -1,6 +1,5 @@
 var multer = require('multer');
 // Create a unique id based on date, until a better way is found
-//var uniqueId = Date.now();
 var storage = multer.diskStorage({
    destination: function (req, file, cb) {
      cb(null, 'client/uploads/')
