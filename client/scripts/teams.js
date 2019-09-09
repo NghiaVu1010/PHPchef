@@ -76,7 +76,7 @@ function insertTableRow(list) {
 
     // Wire in click event for view details
     $("#detailTeam" + list.TeamId).on("click", () => {
-        location.href = `details.html?teamId=${list.TeamId}`;
+        location.href = `details.php?teamId=${list.TeamId}`;
     });
 
     // Wire in click event for view details
@@ -125,7 +125,7 @@ function buildList(dropdown, list) {
 function deleteTeam(teamId) {
     $.ajax({
         type: "DELETE",
-        url: `/api/teams/${teamId}`
+        url: `http://localhost:8081/api/teams/${teamId}`
         })
         .done(function() {
             location.reload();
@@ -177,20 +177,20 @@ $(function() {
         }
         
         // Call to display all teams in that divison
-        $.getJSON("/api/teams/byleague/" + $("#divisionDDL").val(), (data) => {
+        $.getJSON("http://localhost:8081/api/teams/byleague/" + $("#divisionDDL").val(), (data) => {
             displayData(data);
         });
     });
     
     // Preload all teams
     let allData;
-    $.getJSON("/api/teams", function(data) {
+    $.getJSON("http://localhost:8081/api/teams", function(data) {
         allData = data;
     });
 
     // Button redirects to add a team
     $("#addTeamBtn").on("click", function() {
-        location.href = "add_team.html";
+        location.href = "add_team.php";
     });
 
     // Displays all teams when clicked

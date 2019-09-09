@@ -19,6 +19,14 @@ let fs = require("fs");
 
 let app = express();
 
+// enable CORS
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    next();
+});
+
 // Create application/x-www-form-urlencoded parser
 let urlencodedParser = bodyParser.urlencoded({ extended: false })
 
@@ -221,7 +229,7 @@ app.get("/index.html", function (req, res) {
 // THIS CODE ALLOWS REQUESTS FOR THE API THROUGH 
 
 // GET LEAGUES
-app.get("/api/leagues", function (req, res) {
+app.get("http://localhost:8081/api/leagues", function (req, res) {
     console.log("Received a GET request for leagues");
 	
     let data = fs.readFileSync( __dirname + "/data/leagues.json", "utf8");
@@ -235,7 +243,7 @@ app.get("/api/leagues", function (req, res) {
 });
 
 // GET ALL TEAMS
-app.get("/api/teams", function (req, res) {
+app.get("http://localhost:8081/api/teams", function (req, res) {
     console.log("Received a GET request for ALL teams");
 	
     let data = fs.readFileSync( __dirname + "/data/teams.json", "utf8");
@@ -247,7 +255,7 @@ app.get("/api/teams", function (req, res) {
 });
 
 // GET ONE TEAM BY ID
-app.get("/api/teams/:id", function (req, res) {
+app.get("http://localhost:8081/api/teams/:id", function (req, res) {
     let id = req.params.id;
     console.log("Received a GET request for team " + id);
 
@@ -267,7 +275,7 @@ app.get("/api/teams/:id", function (req, res) {
 })
 
 // GET MANY TEAMS BY LEAGUE
-app.get("/api/teams/byleague/:id", function (req, res) {
+app.get("http://localhost:8081/api/teams/byleague/:id", function (req, res) {
     let id = req.params.id;
     console.log("Received a GET request for teams in league " + id);                      
 
@@ -283,7 +291,7 @@ app.get("/api/teams/byleague/:id", function (req, res) {
 })
 
 // GET A SPECIFIC MEMBER ON A SPECIFIC TEAM
-app.get("/api/teams/:teamid/members/:memberid", function (req, res) {
+app.get("http://localhost:8081/api/teams/:teamid/members/:memberid", function (req, res) {
     let teamId = req.params.teamid;
     let memberId = req.params.memberid;
     console.log("Received a GET request for member " + memberId + " on team " + teamId);                      
@@ -313,7 +321,7 @@ app.get("/api/teams/:teamid/members/:memberid", function (req, res) {
 })
 
 // ADD A TEAM
-app.post("/api/teams", urlencodedParser, function (req, res) {
+app.post("http://localhost:8081/api/teams", urlencodedParser, function (req, res) {
     console.log("Received a POST request to add a team");
     console.log("BODY -------->" + JSON.stringify(req.body));
 
@@ -357,7 +365,7 @@ app.post("/api/teams", urlencodedParser, function (req, res) {
  })
 
  // EDIT A TEAM
-app.put("/api/teams", urlencodedParser, function (req, res) {
+app.put("http://localhost:8081/api/teams", urlencodedParser, function (req, res) {
     console.log("Received a PUT request to edit a team");
     console.log("BODY -------->" + JSON.stringify(req.body));
 
@@ -442,7 +450,7 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
  })
 
 // DELETE A TEAM
- app.delete("/api/teams/:id", function (req, res) {   
+ app.delete("http://localhost:8081/api/teams/:id", function (req, res) {   
     let id = req.params.id;
     console.log("Received a DELETE request for team " + id);
 
@@ -467,7 +475,7 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
  })
 
  // ADD A MEMBER TO A TEAM urlencodedParser
- app.post("/api/teams/:id/members", upload.single('file'), function (req, res) {
+ app.post("http://localhost:8081/api/teams/:id/members", upload.single('file'), function (req, res) {
     let teamId = req.params.id;
     //console.log("Received a POST request to add a member to team " + teamId);
     //console.log("BODY -------->" + JSON.stringify(req.body));
@@ -547,7 +555,7 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
  })
 
  // EDIT A MEMBER ON TEAM
- app.put("/api/teams/:id/members", urlencodedParser, function (req, res) {
+ app.put("http://localhost:8081/api/teams/:id/members", urlencodedParser, function (req, res) {
     let teamId = req.params.id;
     console.log("Received a PUT request to edit a member on team " + teamId);
     console.log("BODY -------->" + JSON.stringify(req.body));
@@ -621,7 +629,7 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
  })
 
  // DELETE A MEMBER ON TEAM
- app.delete("/api/teams/:teamid/members/:memberid", urlencodedParser, function (req, res) {
+ app.delete("http://localhost:8081/api/teams/:teamid/members/:memberid", urlencodedParser, function (req, res) {
     let teamId = req.params.teamid;
     let memberId = req.params.memberid;
     console.log("Received a DELETE request for member " + memberId + " on team " + teamId);

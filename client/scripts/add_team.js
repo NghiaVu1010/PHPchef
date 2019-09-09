@@ -9,7 +9,7 @@
 function addTeam() {
     $.post("/api/teams", $("#teamForm").serialize(), function(data) {
         data = JSON.parse(data);
-        location.href = "details.html?teamId=" + data.TeamId;
+        location.href = "details.php?teamId=" + data.TeamId;
     })
     .done(function() {
         //alert("Added successfully!");
@@ -147,6 +147,6 @@ $(function() {
 
     // Cancel back to details
     $("#cancelBtn").on("click", function() {
-        location.href = "teams.html";
+        location.href = "teams.php";
     });
 });
