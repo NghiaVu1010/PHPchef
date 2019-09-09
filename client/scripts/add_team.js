@@ -7,7 +7,7 @@
 
 // Send the data to server
 function addTeam() {
-    $.post("/api/teams", $("#teamForm").serialize(), function(data) {
+    $.post("http://localhost:8081/api/teams", $("#teamForm").serialize(), function(data) {
         data = JSON.parse(data);
         location.href = "details.php?teamId=" + data.TeamId;
     })
@@ -94,7 +94,7 @@ function buildList(dropdown, list) {
 $(function() {
     // Dynamically build DDL with divisions
     let divisionData;
-    $.getJSON("/api/leagues", (data) => {
+    $.getJSON("http://localhost:8081/api/leagues", (data) => {
         divisionData = data;
         buildList($("#divisionDDL"), divisionData);
     });

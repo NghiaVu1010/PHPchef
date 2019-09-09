@@ -6,7 +6,7 @@
   <?php include("inc/head.php"); ?>
 
   <body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top" id="menu_bar">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
       <a class="navbar-brand obli bronze shadows" href="#">Iron Chef</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop" aria-controls="navbarTop" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -16,7 +16,7 @@
       <div class="collapse navbar-collapse" id="navbarTop">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link bold bronze shadows" href="teams.php" id="navSearch">Search</a>
+            <a class="nav-link bold bronze shadows" href="teams.php">Search</a>
           </li>
         </ul>
       </div>
@@ -97,16 +97,7 @@
       <!-- <div class="parallax paraImg3"></div> -->
     </main>
 
-    <footer class="container white text-center">
-      <hr class="bg-white">
-      <p>
-        <i class="fab fa-twitter-square"></i>
-        <i class="fab fa-facebook-square"></i>
-        <i class="fab fa-youtube-square"></i>
-        <i class="fab fa-instagram"></i>
-      </p>
-      <p>&copy;Hartcode Academy 2019</p>
-    </footer>  
+    <?php include("inc/footer.php"); ?>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

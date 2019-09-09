@@ -141,12 +141,12 @@ $(function() {
     let divisionData;
     let divisionPicked = sessionStorage.getItem("divisionPick");
 
-    $.getJSON("/api/leagues", (data) => {
+    $.getJSON("http://localhost:8081/api/leagues", (data) => {
         divisionData = data;
         buildList($("#divisionDDL"), divisionData);
 
         if(divisionPicked != "none") {
-            $.getJSON("/api/teams/byleague/" + $("#divisionDDL").val(), (data) => {
+            $.getJSON("http://localhost:8081/api/teams/byleague/" + $("#divisionDDL").val(), (data) => {
                 displayData(data);
                 $("#teamTable").show();
             });

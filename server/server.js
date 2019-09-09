@@ -3,7 +3,7 @@ var multer = require('multer');
 //var uniqueId = Date.now();
 var storage = multer.diskStorage({
    destination: function (req, file, cb) {
-     cb(null, 'public/uploads/')
+     cb(null, 'client/uploads/')
    },
    filename: function (req, file, cb) {
        //uniqueId = Date.now() + file.originalname;
@@ -229,7 +229,7 @@ app.get("/index.html", function (req, res) {
 // THIS CODE ALLOWS REQUESTS FOR THE API THROUGH 
 
 // GET LEAGUES
-app.get("http://localhost:8081/api/leagues", function (req, res) {
+app.get("/api/leagues", function (req, res) {
     console.log("Received a GET request for leagues");
 	
     let data = fs.readFileSync( __dirname + "/data/leagues.json", "utf8");
@@ -243,7 +243,7 @@ app.get("http://localhost:8081/api/leagues", function (req, res) {
 });
 
 // GET ALL TEAMS
-app.get("http://localhost:8081/api/teams", function (req, res) {
+app.get("/api/teams", function (req, res) {
     console.log("Received a GET request for ALL teams");
 	
     let data = fs.readFileSync( __dirname + "/data/teams.json", "utf8");
@@ -255,7 +255,7 @@ app.get("http://localhost:8081/api/teams", function (req, res) {
 });
 
 // GET ONE TEAM BY ID
-app.get("http://localhost:8081/api/teams/:id", function (req, res) {
+app.get("/api/teams/:id", function (req, res) {
     let id = req.params.id;
     console.log("Received a GET request for team " + id);
 
@@ -275,7 +275,7 @@ app.get("http://localhost:8081/api/teams/:id", function (req, res) {
 })
 
 // GET MANY TEAMS BY LEAGUE
-app.get("http://localhost:8081/api/teams/byleague/:id", function (req, res) {
+app.get("/api/teams/byleague/:id", function (req, res) {
     let id = req.params.id;
     console.log("Received a GET request for teams in league " + id);                      
 
@@ -291,7 +291,7 @@ app.get("http://localhost:8081/api/teams/byleague/:id", function (req, res) {
 })
 
 // GET A SPECIFIC MEMBER ON A SPECIFIC TEAM
-app.get("http://localhost:8081/api/teams/:teamid/members/:memberid", function (req, res) {
+app.get("/api/teams/:teamid/members/:memberid", function (req, res) {
     let teamId = req.params.teamid;
     let memberId = req.params.memberid;
     console.log("Received a GET request for member " + memberId + " on team " + teamId);                      
@@ -321,7 +321,7 @@ app.get("http://localhost:8081/api/teams/:teamid/members/:memberid", function (r
 })
 
 // ADD A TEAM
-app.post("http://localhost:8081/api/teams", urlencodedParser, function (req, res) {
+app.post("/api/teams", urlencodedParser, function (req, res) {
     console.log("Received a POST request to add a team");
     console.log("BODY -------->" + JSON.stringify(req.body));
 
@@ -365,7 +365,7 @@ app.post("http://localhost:8081/api/teams", urlencodedParser, function (req, res
  })
 
  // EDIT A TEAM
-app.put("http://localhost:8081/api/teams", urlencodedParser, function (req, res) {
+app.put("/api/teams", urlencodedParser, function (req, res) {
     console.log("Received a PUT request to edit a team");
     console.log("BODY -------->" + JSON.stringify(req.body));
 
@@ -450,7 +450,7 @@ app.put("http://localhost:8081/api/teams", urlencodedParser, function (req, res)
  })
 
 // DELETE A TEAM
- app.delete("http://localhost:8081/api/teams/:id", function (req, res) {   
+ app.delete("/api/teams/:id", function (req, res) {   
     let id = req.params.id;
     console.log("Received a DELETE request for team " + id);
 
@@ -475,7 +475,7 @@ app.put("http://localhost:8081/api/teams", urlencodedParser, function (req, res)
  })
 
  // ADD A MEMBER TO A TEAM urlencodedParser
- app.post("http://localhost:8081/api/teams/:id/members", upload.single('file'), function (req, res) {
+ app.post("/api/teams/:id/members", upload.single('file'), function (req, res) {
     let teamId = req.params.id;
     //console.log("Received a POST request to add a member to team " + teamId);
     //console.log("BODY -------->" + JSON.stringify(req.body));
@@ -487,12 +487,12 @@ app.put("http://localhost:8081/api/teams", urlencodedParser, function (req, res)
     try {
         if (req.file.filename) {
             // Save image in /public/uploads folder
-            image = `/uploads/${getNextId("member", true)}_${req.file.originalname}`;
+            image = `../client/uploads/${getNextId("member", true)}_${req.file.originalname}`;
             console.log(`Image saved as: ${image}`);
         }
     } 
     catch(e) {
-        image = `/uploads/default.png`;
+        image = `../client/uploads/default.png`;
         console.log(e);
         console.log(`Image saved as: ${image}`);
     }
@@ -555,7 +555,7 @@ app.put("http://localhost:8081/api/teams", urlencodedParser, function (req, res)
  })
 
  // EDIT A MEMBER ON TEAM
- app.put("http://localhost:8081/api/teams/:id/members", urlencodedParser, function (req, res) {
+ app.put("/api/teams/:id/members", urlencodedParser, function (req, res) {
     let teamId = req.params.id;
     console.log("Received a PUT request to edit a member on team " + teamId);
     console.log("BODY -------->" + JSON.stringify(req.body));
@@ -629,7 +629,7 @@ app.put("http://localhost:8081/api/teams", urlencodedParser, function (req, res)
  })
 
  // DELETE A MEMBER ON TEAM
- app.delete("http://localhost:8081/api/teams/:teamid/members/:memberid", urlencodedParser, function (req, res) {
+ app.delete("/api/teams/:teamid/members/:memberid", urlencodedParser, function (req, res) {
     let teamId = req.params.teamid;
     let memberId = req.params.memberid;
     console.log("Received a DELETE request for member " + memberId + " on team " + teamId);
